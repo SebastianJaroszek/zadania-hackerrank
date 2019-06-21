@@ -4,10 +4,49 @@ using namespace std;
 
 vector<string> split_string(string);
 
+int findMinimum(vector<int> arr) {
+    int min = arr[0];
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+int findMaximum(vector<int> arr) {
+    int max = arr[0];
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+long long sumWithout(vector<int> arr, int without) {
+    bool wasWithout = false;
+    long long sum = 0;
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] != without || wasWithout) {
+            sum = sum + arr[i];
+        } else {
+            wasWithout = true;
+        }
+    }
+    return sum;
+}
+
 // Complete the miniMaxSum function below.
 void miniMaxSum(vector<int> arr) {
 
+    int minimum = findMinimum(arr);
+    int maximum = findMaximum(arr);
 
+    long long sumMaximum = sumWithout(arr, minimum);
+    long long sumMinimum = sumWithout(arr, maximum);
+
+    cout << sumMinimum << " " << sumMaximum << endl;
 }
 
 int main()
