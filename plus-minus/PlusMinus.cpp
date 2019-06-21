@@ -6,8 +6,25 @@ vector<string> split_string(string);
 
 // Complete the plusMinus function below.
 void plusMinus(vector<int> arr) {
+    int positivesCount = 0;
+    int negativesCount = 0;
+    int zerosCount = 0;
 
+    int size = arr.size();
 
+    for (int i = 0; i < size; i++) {
+        if (arr[i] > 0) {
+            positivesCount = positivesCount + 1;
+        } else if (arr[i] < 0) {
+            negativesCount = negativesCount + 1;
+        } else {
+            zerosCount = zerosCount + 1;
+        }
+    }
+
+    printf("%.5f\n", (float) positivesCount / size);
+    printf("%.5f\n", (float) negativesCount / size);
+    printf("%.5f", (float) zerosCount / size);
 }
 
 int main()
