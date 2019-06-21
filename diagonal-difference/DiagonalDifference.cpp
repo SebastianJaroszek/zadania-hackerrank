@@ -14,7 +14,23 @@ vector<string> split(const string &);
  */
 
 int diagonalDifference(vector<vector<int>> arr) {
+    int firstDiagonal = 0;
+    int secondDiagonal = 0;
 
+    int size = arr.size();
+
+    for (int i = 0; i < size; i++) {
+        firstDiagonal = firstDiagonal + arr[i][i];
+        secondDiagonal = secondDiagonal + arr[size - (i + 1)][i];
+    }
+
+    int difference = firstDiagonal - secondDiagonal;
+
+    if (difference < 0) {
+        difference = difference * (-1);
+    }
+
+    return difference;
 }
 
 int main()
