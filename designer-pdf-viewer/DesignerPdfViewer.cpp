@@ -4,9 +4,48 @@ using namespace std;
 
 vector<string> split_string(string);
 
+vector<char> alphabet{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+vector<char> stringToArray(string s) {
+    int n = s.length(); 
+    char chars[n]; 
+    strcpy(chars, s.c_str());
+    vector<char> charsVector;
+    for (int i = 0; i < n; i++) {
+        charsVector.push_back(chars[i]);
+    }
+
+    return charsVector;
+}
+
+int findIndexForChar(char ch) {
+    for (int i = 0; i < alphabet.size(); i++) {
+        if (alphabet[i] == ch) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+int getHeightForChar(vector<int> h, char ch) {
+    int index = findIndexForChar(ch);
+    return h[index];
+}
+
 // Complete the designerPdfViewer function below.
 int designerPdfViewer(vector<int> h, string word) {
-
+    vector<char> chars = stringToArray(word);
+    vector<int> heights{};
+    for (int i = 0; i < chars.size(); i++) {
+        heights.push_back(getHeightForChar(h, chars[i]));
+    }
+    int max = heights[0];
+    for (int i = 1; i < heights.size(); i++) {
+        if (heights[i] > max) {
+            max = heights[i];
+        }
+    }
+    return word.length() * max;
 }
 
 int main()
