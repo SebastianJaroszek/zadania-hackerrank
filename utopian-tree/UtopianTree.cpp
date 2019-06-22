@@ -4,7 +4,19 @@ using namespace std;
 
 // Complete the utopianTree function below.
 int utopianTree(int n) {
-
+    int height = 1;
+    if (n == 0) {
+        return height;
+    } else {
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 0) {
+                height = height + 1; 
+            } else {
+                height = height * 2;
+            }
+        }
+        return height;
+    }
 }
 
 int main()
