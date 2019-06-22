@@ -4,9 +4,42 @@ using namespace std;
 
 vector<string> split_string(string);
 
+vector<int> counts{};
+
+int findMinimum(vector<int> arr) {
+    int min = arr[0];
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+vector<int> cut(vector<int> arr) {
+    int min = findMinimum(arr);
+    vector<int> newArr{};
+    for (int i = 0; i < arr.size(); i++) {
+        arr[i] = arr[i] - min;
+        if (arr[i] > 0) {
+            newArr.push_back(arr[i]);
+        }
+    }
+    return newArr;
+}
+
+void recurrenceCutting(vector<int> arr) {
+    counts.push_back(arr.size());
+    arr = cut(arr);
+    if (arr.size() > 0) {
+        recurrenceCutting(arr);
+    }
+}
+
 // Complete the cutTheSticks function below.
 vector<int> cutTheSticks(vector<int> arr) {
-
+    recurrenceCutting(arr);
+    return counts;
 }
 
 int main()
