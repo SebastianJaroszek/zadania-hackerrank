@@ -7,7 +7,18 @@ vector<string> split_string(string);
 // Complete the jumpingOnClouds function below.
 int jumpingOnClouds(vector<int> c) {
 
+    int count = 0;
 
+    for (int i = 1; i < c.size(); i++) {
+        if (c[i + 1] == 0) {
+            count++;
+            i++;
+        } else {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 int main()
